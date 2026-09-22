@@ -74,8 +74,8 @@ export default function AdminStockInPage() {
   }, [searchQuery, products, txStore]);
 
   const handleSelectStockItem = (item: Product) => {
-    setSearchQuery(item.productName || '');
-    setProductName(item.productName || '');
+    setSearchQuery((item as any).productName || '');
+setProductName((item as any).productName || '');
     setSize(item.size || '');
     setColor(item.color || '');
     setIsDropdownOpen(false);
