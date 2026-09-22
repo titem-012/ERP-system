@@ -67,7 +67,7 @@ export default function AdminStockInPage() {
     if (!searchQuery) return [];
     return products.filter(p => 
       p.storeId === txStore &&
-      ((p.productName || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+     (((p as any).productName || '').toLowerCase()
        (p.size || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
        (p.color || '').toLowerCase().includes(searchQuery.toLowerCase()))
     ).slice(0, 10);
