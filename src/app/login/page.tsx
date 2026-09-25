@@ -23,7 +23,7 @@ export default function LoginPage() {
       if (user.role === 'ADMIN') {
         router.push('/admin/reports');
       } else if (user.role === 'CASHIER') {
-        router.push('/cashier/dashboard');
+        router.push('/cashier/reports');
       }
     }
   }, [user, router]);
