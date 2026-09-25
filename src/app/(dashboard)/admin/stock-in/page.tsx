@@ -67,9 +67,9 @@ export default function AdminStockInPage() {
     if (!searchQuery) return [];
     return products.filter(p => 
       p.storeId === txStore &&
-     (((p as any).productName || '').toLowerCase()
-       (p.size || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
-       (p.color || '').toLowerCase().includes(searchQuery.toLowerCase()))
+      (String((p as any).productName || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+       String(p.size || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+       String(p.color || '').toLowerCase().includes(searchQuery.toLowerCase()))
     ).slice(0, 10);
   }, [searchQuery, products, txStore]);
 
@@ -159,13 +159,12 @@ setProductName((item as any).productName || '');
     // BULLETPROOF SEARCH FOR TABLE
     if (search) {
       const matchesSearch = tx.items.some(
-        (it) => (it.productName || '').toLowerCase().includes(search.toLowerCase()) || 
-                (it.color || '').toLowerCase().includes(search.toLowerCase()) || 
-                (it.size || '').toLowerCase().includes(search.toLowerCase())
-      ) || (tx.note && tx.note.toLowerCase().includes(search.toLowerCase()));
+        (it) => String(it.productName || '').toLowerCase().includes(search.toLowerCase()) || 
+                String(it.color || '').toLowerCase().includes(search.toLowerCase()) || 
+                String(it.size || '').toLowerCase().includes(search.toLowerCase())
+      ) || (tx.note && String(tx.note).toLowerCase().includes(search.toLowerCase()));
       if (!matchesSearch) return false;
     }
-
     return true;
   });
 
